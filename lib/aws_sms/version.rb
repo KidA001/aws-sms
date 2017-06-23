@@ -1,3 +1,3 @@
-module AwsSms
-  VERSION = "0.1.0"
+class AwsSms
+  VERSION = "0.3.1"
 end
