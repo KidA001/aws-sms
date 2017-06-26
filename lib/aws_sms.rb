@@ -21,11 +21,8 @@ class AwsSms
 
   def client
     @client ||= begin
-      sns = ::Aws::SNS::Client.new()
-      sns.set_sms_attributes({ attributes: {
-        "DefaultSMSType" => default_sms_type,
-        "DefaultSenderID" => default_sender_id
-      }})
+      sns = Aws::SNS::Client.new()
+      sns.set_sms_attributes({ attributes: sms_attributes })
       sns
     end
   end
@@ -35,7 +32,7 @@ class AwsSms
               :sms_attributes
 
   def set_config!
-    ::Aws.config.update({
+    Aws.config.update({
       aws_default_region: aws_default_region,
       credentials: Aws::Credentials.new(aws_access_key_id, aws_secret_access_key)
     })
