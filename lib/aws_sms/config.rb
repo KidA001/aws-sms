@@ -27,17 +27,9 @@ class AwsSms
 
     def self.sms_attributes
       unless configatron.has_key?(:sms_attributes)
-        configatron.sms_attributes = { "DefaultSMSType" => 'Transactional' }
+        configatron.sms_attributes = { 'DefaultSMSType' => 'Transactional' }
       end
       configatron.sms_attributes
-    end
-
-    def self.sms_type
-      configatron.default_sms_type
-    end
-
-    def self.default_sender_id
-      configatron.default_sender_id
     end
   end
 end
