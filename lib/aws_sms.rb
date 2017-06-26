@@ -22,10 +22,6 @@ class AwsSms
     client.publish(phone_number: phone_number, message: message)
   end
 
-  private
-  attr_reader :region, :access_key_id, :secret_key, :default_sender_id,
-              :default_sms_type
-
   def client
     @client ||= begin
       sns = ::Aws::SNS::Client.new()
@@ -36,6 +32,10 @@ class AwsSms
       sns
     end
   end
+
+  private
+  attr_reader :aws_default_region, :aws_access_key_id, :aws_secret_access_key,
+              :sms_attributes
 
   def set_config!
     ::Aws.config.update({
